@@ -2,6 +2,10 @@
 
 A [Q](https://github.com/kriskowal/q)-enabled filesystem wrapper for Cordova. Easier to use than [cordova-plugin-file](https://github.com/apache/cordova-plugin-file).
 
+# Installation
+
+`npm install quordova-file`
+
 # Usage
 
 ## exists(fname)
