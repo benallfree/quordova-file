@@ -1,3 +1,5 @@
+Q = require('q')
+
 class File
   @exists: (fname)->
     console.log("Checking to see if exists:", fname)
