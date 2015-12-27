@@ -1,7 +1,7 @@
 {
   "name": "qordova-file",
   "version": "1.0.0",
-  "reposiory": "git@github.com:benallfree/quordova-file.git",
+  "reposiory": "benallfree/quordova-file",
   "description": "Q-enabled File interface for Cordova",
   "main": "./build/file",
   "scripts": {

@@ -15,13 +15,16 @@ A [Q](https://github.com/kriskowal/q)-enabled filesystem wrapper for Cordova. Ea
 Check to see if a file exists.
 
 ```
-File.exists(fname)
-.then(function() {
-  console.log('exists');
-})
-.fail(function() {
-  console.log('does not exist');
-});
+// Note that we must wrap inside `deviceready` because it uses Cordova features.
+document.addEventListener("deviceready", (function() {
+  File.exists(fname)
+  .then(function() {
+    console.log('exists');
+  })
+  .fail(function() {
+    console.log('does not exist');
+  });
+}), false);
 ```
 
 ## rm(file\_or\_dir)
@@ -29,11 +32,14 @@ File.exists(fname)
 Remove a file or recursively remove a directory.
 
 ```
-File.rm(fname)
-.then(function() {
-  console.log('file or directory deleted, or didn't exist in the first place');
-})
-.fail(function(err) {
-  console.log('could not delete file or directory', err);
-});
+// Note that we must wrap inside `deviceready` because it uses Cordova features.
+document.addEventListener("deviceready", (function() {
+  File.rm(fname)
+  .then(function() {
+    console.log('file or directory deleted, or didn't exist in the first place');
+  })
+  .fail(function(FileError) {
+    console.log('could not delete file or directory', err);
+  });
+}), false);
 ```

@@ -1,5 +1,12 @@
 Q = require('q')
 
+class FileError
+  constructor: (@fname,@errorInfo)->
+
+class FileDeleteError extends FileError
+
+class DirectoryDeleteError extends FileError
+    
 class File
   @exists: (fname)->
     console.log("Checking to see if exists:", fname)
@@ -22,7 +29,7 @@ class File
           deferred.resolve()
         ), ((err)->
           console.log("Delete unsuccessful", err)
-          deferred.reject(err)
+          deferred.reject(new FileDeleteError(fname,err))
         ))
       if fileEntry.isDirectory
         console.log("Is a directory", fname)
@@ -31,7 +38,7 @@ class File
           deferred.resolve()
         ), ((err)->
           console.log("There was an error removing the directory", err)
-          deferred.reject(err)
+          deferred.reject(new DirectoryDeleteError(fname,err))
         ))
     )
     .fail(->
@@ -40,4 +47,8 @@ class File
     )
     deferred.promise
     
-module.exports = File
+module.exports =
+  File: File
+  FileError: FileError
+  FileDeleteError: FileDeleteError
+  DirectoryDeleteError: DirectoryDeleteError
