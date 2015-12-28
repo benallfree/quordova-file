@@ -13,8 +13,8 @@ class File
     d = Q.defer()
     window.resolveLocalFileSystemURL(fname, ((fileEntry)->
       d.resolve(fileEntry)
-    ), (->
-      d.reject()
+    ), ((fileError)->
+      d.reject(fileError)
     ))
     d.promise
 

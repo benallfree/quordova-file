@@ -47,8 +47,8 @@
       d = Q.defer();
       window.resolveLocalFileSystemURL(fname, (function(fileEntry) {
         return d.resolve(fileEntry);
-      }), (function() {
-        return d.reject();
+      }), (function(fileError) {
+        return d.reject(fileError);
       }));
       return d.promise;
     };
